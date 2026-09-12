@@ -1,0 +1,33 @@
+services:
+  devops:
+    build: .
+    image: devops:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - devopsNet
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: users-postgres-upm
+    environment:
+      POSTGRES_DB: usersdb
+      POSTGRES_USER: users
+      POSTGRES_PASSWORD: users
+    ports:
+      - "5432:5432"
+    networks:
+      - devopsNet
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U users -d usersdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  devopsNet:
+    external: true
+
+#> docker compose up --build -d
