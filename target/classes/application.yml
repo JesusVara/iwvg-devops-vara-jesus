@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: users-service
+  docker:
+    compose:
+      enabled: true
+      file: compose.yml
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.hibernate.SQL: debug
