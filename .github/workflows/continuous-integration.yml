@@ -48,10 +48,10 @@ jobs:
         with:
           category: "/language:java"
 
-      # Organización de la cuenta de Sonar: JesusVara
+      # Organización de la cuenta de Sonar: jesusvara
       - name: 🏷️ Extract artifact from pom & Sonar Organization
         run: |
-          echo "ORGANIZATION=JesusVara" >> $GITHUB_ENV
+          echo "ORGANIZATION=jesusvara" >> $GITHUB_ENV
           echo "ARTIFACT=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
 
       - name: 📊 Sonar Analysis
