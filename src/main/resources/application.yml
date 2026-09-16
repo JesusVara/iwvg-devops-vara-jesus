@@ -24,8 +24,23 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
+info:
+  app:
+    artifact: "@project.artifactId@"
+    version: "@project.version@"
+    build: "@maven.build.timestamp@"
+
 server:
   port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  info:
+    env:
+      enabled: true
 
 logging:
   level:
