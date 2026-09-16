@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
 
 @RestController
-@RequestMapping({"/api/users", "/user"})
+@RequestMapping({"/user"}) //Just /user url
 public class UserController {
 
     private static final Set<String> SORTABLE_PROPERTIES = Set.of(
