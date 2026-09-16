@@ -33,7 +33,7 @@ jobs:
 
       - name: ✅ Run Unit & Integration Test & Functional Test
         run: mvn -B clean verify -Djacoco.skip=true -DargLine=-Dnet.bytebuddy.experimental=true -Dtest=UserServiceTest test
-
+        
       - name: 🔔 Notify Slack on failure
         if: failure()
         uses: 8398a7/action-slack@v3
@@ -48,10 +48,10 @@ jobs:
         with:
           category: "/language:java"
 
-      # Organización de la cuenta de Sonar: miw-upm-github
+      # Organización de la cuenta de Sonar: jesusvara
       - name: 🏷️ Extract artifact from pom & Sonar Organization
         run: |
-          echo "ORGANIZATION=miw-upm-github" >> $GITHUB_ENV
+          echo "ORGANIZATION=jesusvara" >> $GITHUB_ENV
           echo "ARTIFACT=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
 
       - name: 📊 Sonar Analysis
