@@ -5,15 +5,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping({"/user"}) //Just /user url
 public class UserController {
 
     private static final Set<String> SORTABLE_PROPERTIES = Set.of(
@@ -32,6 +35,13 @@ public class UserController {
                                        @RequestParam(required = false) Boolean billable,
                                        Pageable pageable) {
         return userService.findUsers(search, billable, sanitizePageable(pageable));
+    }
+
+    // Feature-3: delete a user by identifier.
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 
     private Pageable sanitizePageable(Pageable pageable) {

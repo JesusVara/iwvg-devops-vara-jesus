@@ -25,4 +25,9 @@ public class UserService {
         return userRepository.findAll(specification, pageable)
                 .map(UserResponse::from);
     }
+
+    // Feature-3: remove the requested user from the database.
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
 }
