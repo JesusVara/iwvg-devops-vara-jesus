@@ -1,3 +1,6 @@
+logging:
+  level:
+    es.upm.miw: DEBUG
 spring:
   datasource:
     url: jdbc:h2:mem:users-test;DB_CLOSE_DELAY=-1
@@ -6,7 +9,7 @@ spring:
     driver-class-name: org.h2.Driver
   sql:
     init:
-      mode: always
+      mode: never
   jpa:
     defer-datasource-initialization: true
     hibernate:
