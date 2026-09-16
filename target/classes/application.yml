@@ -24,8 +24,23 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
+info:
+  app:
+    artifact: "iwvg-devops-vara-jesus"
+    version: "6.0.2-SNAPSHOT"
+    build: "2026-09-16 10:03:33"
+
 server:
   port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  info:
+    env:
+      enabled: true
 
 logging:
   level:
