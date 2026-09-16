@@ -117,6 +117,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>es.upm.miw.devops.Application</mainClass>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

@@ -6,12 +6,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(UserService.class)
 @ActiveProfiles("test")
+@TestPropertySource(properties = "spring.sql.init.mode=always")
 class UserServiceTest {
 
     @Autowired
