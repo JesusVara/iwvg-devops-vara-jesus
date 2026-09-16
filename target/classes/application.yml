@@ -26,9 +26,9 @@ spring:
 
 info:
   app:
-    artifact: "iwvg-devops-vara-jesus"
-    version: "6.0.2-SNAPSHOT"
-    build: "2026-09-16 10:03:33"
+    artifact: "users-service"
+    version: "0.0.1-SNAPSHOT"
+    build: "2026-09-16T14:40:08Z"
 
 server:
   port: 8080
