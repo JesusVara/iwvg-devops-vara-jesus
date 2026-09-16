@@ -32,7 +32,7 @@ jobs:
           queries: security-extended
 
       - name: ✅ Run Unit & Integration Test & Functional Test
-        run: mvn -B verify
+        run: mvn -B clean verify
 
       - name: 🔔 Notify Slack on failure
         if: failure()
