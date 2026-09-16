@@ -1,3 +1,14 @@
+es/upm/miw/devops/code/UserServiceTest.class
 com/example/users/service/UserServiceTest.class
-com/example/users/functionaltests/UserControllerFT.class
+es/upm/miw/devops/functionaltests/SystemResourceFT.class
+es/upm/miw/devops/code/DecimalStreamWithFunctionalProgrammingTest.class
+es/upm/miw/devops/functionaltests/UserResourceFT.class
+com/example/users/functionaltests/UserControllerFT$TestSecurityConfiguration.class
+es/upm/miw/devops/code/DecimalCollectionTest.class
+es/upm/miw/devops/code/LambdaTest.class
+es/upm/miw/devops/code/DecimalCollectionWithStreamTest.class
 com/example/users/domain/UserTest.class
+es/upm/miw/devops/code/FlowTest.class
+es/upm/miw/devops/code/PointTest.class
+com/example/users/functionaltests/UserControllerFT.class
+es/upm/miw/devops/code/SearchesTest.class

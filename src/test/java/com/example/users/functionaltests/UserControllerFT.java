@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
@@ -19,11 +24,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 )
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
+@Import(UserControllerFT.TestSecurityConfiguration.class)
 @TestPropertySource(properties = "spring.sql.init.mode=always")
 class UserControllerFT {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @TestConfiguration
+    static class TestSecurityConfiguration {
+
+        @Bean
+        SecurityFilterChain permitAllRequests(HttpSecurity http) throws Exception {
+            return http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll())
+                    .csrf(csrf -> csrf.disable())
+                    .build();
+        }
+    }
 
     @Test
     void returnsBillableUsersFromSeededDatabase() throws Exception {
