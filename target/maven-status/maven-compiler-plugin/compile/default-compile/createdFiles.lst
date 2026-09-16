@@ -1,0 +1,7 @@
+com/example/users/api/UserController.class
+com/example/users/repository/UserSpecifications.class
+com/example/users/domain/User.class
+com/example/users/service/UserService.class
+com/example/users/api/UserResponse.class
+com/example/users/UsersServiceApplication.class
+com/example/users/repository/UserRepository.class
