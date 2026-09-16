@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>es.upm.miw</groupId>
-    <artifactId>iwvg-devops</artifactId>
+    <artifactId>iwvg-devops-vara-jesus</artifactId>
     <version>2.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.groupId}.${project.artifactId}</name>
@@ -28,9 +28,9 @@
 
     <developers>
         <developer>
-            <name>Jesus Bernal</name>
-            <id>J.Bernal</id>
-            <email>j.bernal@upm.es</email>
+            <name>Jesus Vara</name>
+            <id>J.Vara</id>
+            <email>jesus.vara@alumnos.upm.es</email>
             <organization>MIW UPM</organization>
             <roles>
                 <role>Architect</role>
@@ -64,6 +64,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -102,12 +106,20 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>es.upm.miw.devops.Application</mainClass>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
