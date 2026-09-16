@@ -5,6 +5,15 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: usersdb
+      DB_USERNAME: users
+      DB_PASSWORD: users
+    depends_on:
+      postgres:
+        condition: service_healthy
     networks:
       - devopsNet
 
