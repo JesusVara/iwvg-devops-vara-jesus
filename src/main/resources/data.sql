@@ -83,7 +83,7 @@ INSERT INTO users (
     address, city, province, postal_code
 )
 SELECT 'Irene', 'Castro', 'irene.castro@example.com', 'ID-1009',
-       'Calle Sol 12', 'Madrid', 'Madrid', '28010'
+       'Calle Sol 12', 'Pamplona', 'Navarra', '31010'
 WHERE NOT EXISTS (
     SELECT 1 FROM users WHERE email = 'irene.castro@example.com'
 );
