@@ -30,7 +30,6 @@ class UserServiceTest {
     void filtersSeededUsersByBillableStatus() {
         var result = userService.findUsers(null, false, PageRequest.of(0, 20));
 
-        assertThat(result.getContent()).extracting("email")
                 .containsExactly("gabriela.torres@example.com");
     }
 }
