@@ -32,7 +32,10 @@ jobs:
           queries: security-extended
 
       - name: ✅ Run Unit & Integration Test & Functional Test
-        run: mvn -B clean verify -DargLine=-Dnet.bytebuddy.experimental=true
+        run: mvn -B clean verify
+
+      - name: 📄 Verify JaCoCo report
+        run: test -s target/site/jacoco/jacoco.xml
         
       - name: 🔔 Notify Slack on failure
         if: failure()
@@ -60,4 +63,5 @@ jobs:
           -Dsonar.projectKey=${{ env.ORGANIZATION }}_${{ env.ARTIFACT }}
           -Dsonar.organization=${{ env.ORGANIZATION }}
           -Dsonar.host.url=https://sonarcloud.io 
+          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
           -Dsonar.token=${{ secrets.SONAR_TOKEN }}
