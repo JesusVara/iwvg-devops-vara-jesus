@@ -57,10 +57,11 @@ jobs:
           echo "ORGANIZATION=jesusvara" >> $GITHUB_ENV
           echo "ARTIFACT=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
 
+      #${{ env.ORGANIZATION }}_${{ env.ARTIFACT }}
       - name: 📊 Sonar Analysis
         run: >
           mvn -B sonar:sonar
-          -Dsonar.projectKey=${{ env.ORGANIZATION }}_${{ env.ARTIFACT }}
+          -Dsonar.projectKey=JesusVara_iwvg-devops-vara-jesus
           -Dsonar.organization=${{ env.ORGANIZATION }}
           -Dsonar.host.url=https://sonarcloud.io 
           -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
