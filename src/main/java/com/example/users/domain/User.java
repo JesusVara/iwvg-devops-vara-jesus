@@ -40,6 +40,10 @@ public class User {
     @Column(nullable = false)
     private String postalCode;
 
+    // Feature-4: users are inactive until explicitly activated.
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean active;
+
     public Long getId() {
         return id;
     }
@@ -110,6 +114,14 @@ public class User {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public boolean isBillable() {

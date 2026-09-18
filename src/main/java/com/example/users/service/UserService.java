@@ -7,7 +7,10 @@ import com.example.users.repository.UserSpecifications;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UserService {
@@ -29,5 +32,15 @@ public class UserService {
     // Feature-3: remove the requested user from the database.
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    // Feature-4: mark the selected user as active.
+    @Transactional
+    public void activateUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "User not found: " + id));
+        user.setActive(true);
+        userRepository.save(user);
     }
 }

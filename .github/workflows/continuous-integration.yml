@@ -32,7 +32,7 @@ jobs:
           queries: security-extended
 
       - name: ✅ Run Unit & Integration Test & Functional Test
-        run: mvn -B clean verify -Djacoco.skip=true -DargLine=-Dnet.bytebuddy.experimental=true -Dtest=UserServiceTest test
+        run: mvn -B clean verify -DargLine=-Dnet.bytebuddy.experimental=true
         
       - name: 🔔 Notify Slack on failure
         if: failure()

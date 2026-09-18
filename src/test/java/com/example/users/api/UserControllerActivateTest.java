@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
 @Import(SecurityConfig.class)
-class UserControllerDeleteTest {
+class UserControllerActivateTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -25,20 +25,20 @@ class UserControllerDeleteTest {
     private UserService userService;
 
     @Test
-    void deletesUserWithValidCsrfToken() throws Exception {
+    void activatesUserWithValidCsrfToken() throws Exception {
         String csrfToken = "test-csrf-token";
 
-        mockMvc.perform(delete("/user/28")
+        mockMvc.perform(put("/user/28/active")
                         .cookie(new Cookie("XSRF-TOKEN", csrfToken))
                         .header("X-XSRF-TOKEN", csrfToken))
                 .andExpect(status().isNoContent());
 
-        verify(userService).deleteUser(28L);
+        verify(userService).activateUser(28L);
     }
 
     @Test
-    void rejectsDeleteWithoutCsrfToken() throws Exception {
-        mockMvc.perform(delete("/user/28"))
+    void rejectsActivationWithoutCsrfToken() throws Exception {
+        mockMvc.perform(put("/user/28/active"))
                 .andExpect(status().isForbidden());
     }
 }

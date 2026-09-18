@@ -1,6 +1,6 @@
 spring:
   application:
-    name: users-service
+    name: iwvg-devops-vara-jesus
   docker:
     compose:
       enabled: true
@@ -26,9 +26,9 @@ spring:
 
 info:
   app:
-    artifact: "users-service"
-    version: "0.0.1-SNAPSHOT"
-    build: "2026-09-16T14:40:08Z"
+    artifact: "@project.artifactId@"
+    version: "@project.version@"
+    build: "@maven.build.timestamp@"
 
 server:
   port: 8080

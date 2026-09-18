@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,13 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Feature-4: activate a user by identifier.
+    @PutMapping("/{id}/active")
+    public ResponseEntity<Void> activateUser(@PathVariable Long id) {
+        userService.activateUser(id);
         return ResponseEntity.noContent().build();
     }
 
