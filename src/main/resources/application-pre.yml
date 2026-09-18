@@ -16,7 +16,6 @@ spring:
     init:
       mode: always
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     spring:
     defer-datasource-initialization: true
     hibernate:
