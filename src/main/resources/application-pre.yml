@@ -8,7 +8,7 @@ spring:
       enabled: true
       file: docker-compose.yml
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:usersdb}}
+    url: jdbc:${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME:${DB_USERNAME:users}}
     password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:users}}
     driver-class-name: org.postgresql.Driver
@@ -16,6 +16,8 @@ spring:
     init:
       mode: always
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
