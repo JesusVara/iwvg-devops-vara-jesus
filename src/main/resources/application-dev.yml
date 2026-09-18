@@ -1,2 +1,49 @@
+spring:
+  application:
+    name: iwvg-devops-vara-jesus
+  profile:
+    default: dev
+  docker:
+    compose:
+      enabled: true
+      file: docker-compose.yml
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:usersdb}}
+    username: ${SPRING_DATASOURCE_USERNAME:${DB_USERNAME:users}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:users}}
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  jackson:
+    default-property-inclusion: non_null
+
+info:
+  app:
+    artifact: "@project.artifactId@"
+    version: "@project.version@"
+    build: "@maven.build.timestamp@"
+
 server:
   port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  info:
+    env:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug

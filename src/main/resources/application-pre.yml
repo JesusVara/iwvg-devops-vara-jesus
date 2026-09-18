@@ -1,8 +1,8 @@
+app:
+  hosting: render
 spring:
   application:
     name: iwvg-devops-vara-jesus
-  profile:
-    default: dev
   docker:
     compose:
       enabled: true
