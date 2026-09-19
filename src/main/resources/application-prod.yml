@@ -8,9 +8,9 @@ spring:
       enabled: true
       file: docker-compose.yml
   datasource:
-    url: jdbc:postgresql://postgres:5432/devopsDb
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres-server:5432/devopsDb}
+    username: ${SPRING_DATASOURCE_USERNAME:${POSTGRES_USER:postgres}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${POSTGRES_PASSWORD:postgres}}
     driver-class-name: org.postgresql.Driver
   sql:
     init:
