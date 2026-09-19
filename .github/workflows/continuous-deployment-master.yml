@@ -66,12 +66,13 @@ jobs:
 
             sudo docker pull ${{ env.GHCR_URL }}/${{ env.REPOSITORY }}:latest
             sudo docker rm -f ${{ env.ARTIFACT }} || true
+            sudo docker network inspect devopsNet >/dev/null 2>&1 || sudo docker network create devopsNet
             sudo docker run -d \
               --name ${{ env.ARTIFACT }} \
               --restart always \
               --memory 256m \
               --memory-swap 512m \
-              --network devops \
+              --network devopsNet \
               -p 8080:8080 \
               -e SPRING_PROFILES_ACTIVE=prod \
               -e POSTGRES_USER="${{ secrets.POSTGRES_USER }}" \
