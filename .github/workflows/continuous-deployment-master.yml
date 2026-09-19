@@ -20,6 +20,9 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
+      - name: 🏷️ Extract GitHub Container Registry, repository (lowercase) & version from pom
+        run: |
+          echo "GHCR_URL=ghcr.io" >> $GITHUB_ENV
 
       - name: 🏷️ Prepare container image metadata (repository in lowercase, artifact, version...)
         run: |
