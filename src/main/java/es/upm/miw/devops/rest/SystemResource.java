@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Locale;
+
 @RestController
 @RequestMapping(SystemResource.SYSTEM)
 public class SystemResource {
@@ -36,6 +38,8 @@ public class SystemResource {
     private String version;
     @Value("${info.app.build}")
     private String build;
+    @Value("${app.hosting:AWS}")
+    private String hosting;
 
     public String generateBadge(String label, String value) {
         int widthLabel = TEXT_MARGIN + CHARACTER_WIDTH * label.length();
@@ -58,7 +62,7 @@ public class SystemResource {
 
     @GetMapping(value = VERSION_BADGE, produces = {"image/svg+xml"})
     public byte[] generateBadge() {
-        return this.generateBadge("Render", "v" + version).getBytes();
+        return this.generateBadge(hosting.toUpperCase(Locale.ROOT), "v" + version).getBytes();
     }
 
 }

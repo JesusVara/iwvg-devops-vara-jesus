@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 @RestController
 public class SystemController {
@@ -39,6 +40,9 @@ public class SystemController {
     @Value("${info.app.build:unknown}")
     private String build;
 
+    @Value("${app.hosting:AWS}")
+    private String hosting;
+
     @GetMapping({"/", "/system"})
     public String applicationInfo() {
         return "{\"version\":\"" + artifact + "::" + version + "::" + build + "\"}";
@@ -46,7 +50,8 @@ public class SystemController {
 
     @GetMapping(value = {"/version-badge", "/system/version-badge"}, produces = "image/svg+xml")
     public byte[] generateBadge() {
-        return generateBadge("Render", "v" + version).getBytes(StandardCharsets.UTF_8);
+        return generateBadge(hosting.toUpperCase(Locale.ROOT), "v" + version)
+                .getBytes(StandardCharsets.UTF_8);
     }
 
     private String generateBadge(String label, String value) {
