@@ -28,7 +28,12 @@ jobs:
         run: |
           echo "REPOSITORY=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
           echo "ARTIFACT=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV          
-          echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          if [ -n "$TAG" ]; then
+            echo "VERSION=${TAG#v}" >> $GITHUB_ENV
+          else
+            echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+          fi
 
       # 1º Crear Token de Acceso Personal:
       #    GitHub → Settings → Developer settings → Personal access tokens → Generate new token (classic)
@@ -95,6 +100,7 @@ jobs:
               --network devopsNet \
               -p 8080:8080 \
               -e SPRING_PROFILES_ACTIVE=prod \
+              -e APP_VERSION="${{ env.VERSION }}" \
               -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server:5432/devopsDb \
               -e SPRING_DATASOURCE_USERNAME="${{ secrets.POSTGRES_USER }}" \
               -e SPRING_DATASOURCE_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}" \

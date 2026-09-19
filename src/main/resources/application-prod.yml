@@ -31,7 +31,7 @@ spring:
 info:
   app:
     artifact: "@project.artifactId@"
-    version: "@project.version@"
+    version: "${APP_VERSION:@project.version@}"
     build: "@maven.build.timestamp@"
 
 server:
