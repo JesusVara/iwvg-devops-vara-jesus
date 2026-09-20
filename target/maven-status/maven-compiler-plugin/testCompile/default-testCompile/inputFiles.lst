@@ -1,6 +1,12 @@
+/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/api/UserControllerActivateTest.java
+/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/api/UserControllerDeleteTest.java
+/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/api/UserControllerUpdateTest.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/domain/UserTest.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/functionaltests/UserControllerFT.java
+/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/service/UserServiceActivateTest.java
+/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/service/UserServiceDeleteTest.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/service/UserServiceTest.java
+/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/com/example/users/service/UserServiceUpdateTest.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/es/upm/miw/devops/code/DecimalCollectionTest.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/es/upm/miw/devops/code/DecimalCollectionWithStreamTest.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/test/java/es/upm/miw/devops/code/DecimalStreamWithFunctionalProgrammingTest.java
