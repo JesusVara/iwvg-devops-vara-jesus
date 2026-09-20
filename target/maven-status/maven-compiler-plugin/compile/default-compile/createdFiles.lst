@@ -16,6 +16,7 @@ com/example/users/api/UserUpdateRequest.class
 com/example/users/api/UserResponse.class
 es/upm/miw/devops/code/Flow.class
 es/upm/miw/devops/code/DecimalCollection.class
+com/example/users/api/UserActiveUpdateRequest.class
 es/upm/miw/devops/code/ParallelStream.class
 es/upm/miw/devops/code/DecimalStreamWithFunctionalProgramming.class
 es/upm/miw/devops/code/UsersDatabase.class

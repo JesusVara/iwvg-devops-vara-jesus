@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping({"/user"}) //Just /user url
@@ -65,6 +67,19 @@ public class UserController {
     @PutMapping("/{id}")
     public UserResponse updateUser(@PathVariable Long id, @RequestBody UserUpdateRequest request) {
         return userService.updateUser(id, request);
+    }
+
+    @Operation(
+            summary = "Update active status for multiple users",
+            description = "Activates only the users whose active field is true. Entries with active false are ignored.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Users updated"),
+                    @ApiResponse(responseCode = "404", description = "A user was not found")
+            }
+    )
+    @PatchMapping
+    public List<UserResponse> updateUsersActive(@RequestBody List<UserActiveUpdateRequest> requests) {
+        return userService.updateUsersActive(requests);
     }
 
     private Pageable sanitizePageable(Pageable pageable) {

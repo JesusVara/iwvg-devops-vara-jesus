@@ -1,6 +1,7 @@
 package com.example.users.service;
 
 import com.example.users.api.UserResponse;
+import com.example.users.api.UserActiveUpdateRequest;
 import com.example.users.api.UserUpdateRequest;
 import com.example.users.domain.User;
 import com.example.users.repository.UserRepository;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -66,5 +69,21 @@ public class UserService {
         }
 
         return UserResponse.from(userRepository.save(user));
+    }
+
+    @Transactional
+    public List<UserResponse> updateUsersActive(List<UserActiveUpdateRequest> requests) {
+        List<User> users = requests.stream()
+                .filter(UserActiveUpdateRequest::active)
+                .map(request -> userRepository.findById(request.id())
+                        .orElseThrow(() -> new ResponseStatusException(
+                                HttpStatus.NOT_FOUND, "User not found: " + request.id())))
+                .toList();
+
+        users.forEach(user -> user.setActive(true));
+
+        return userRepository.saveAll(users).stream()
+                .map(UserResponse::from)
+                .toList();
     }
 }
