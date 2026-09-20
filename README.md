@@ -11,7 +11,7 @@
 
 ### Estado del código
 [![DevOps](https://github.com/JesusVara/iwvg-devops-vara-jesus/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/JesusVara/iwvg-devops-vara-jesus/actions/workflows/continuous-integration.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=JesusVara_iwvg-devops-vara-jesus&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=JesusVara_iwvg-devops-vara-jesus)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jesusvara_iwvg-devops-vara-jesus&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jesusvara_iwvg-devops-vara-jesus)
 [![Render broken](http://51.49.31.85:8080/system/version-badge)](http://51.49.31.85:8080/system/version-badge)
 
 
@@ -122,6 +122,5 @@ Indicar como texto en la subida la **URL de GitHub**
 
 Ejemplo resuelto:
 ![](./docs/miw-iwvg-devops-demo.png)
-
 
 
