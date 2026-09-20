@@ -1,17 +1,15 @@
-package es.upm.miw.devops.rest;
+package com.example.users.api;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 @RestController
-@RequestMapping(SystemResource.SYSTEM)
-public class SystemResource {
-    public static final String SYSTEM = "/";
-    public static final String VERSION_BADGE = "/version-badge";
+public class SystemController {
+
     private static final String BADGE_IMAGE_TEMPLATE = """
             <svg xmlns="http://www.w3.org/2000/svg" width="%d" height="20">
                 <linearGradient id="a" x2="0" y2="100%%">
@@ -32,37 +30,37 @@ public class SystemResource {
             """;
     private static final int TEXT_MARGIN = 12;
     private static final int CHARACTER_WIDTH = 6;
-    @Value("${info.app.artifact}")
+
+    @Value("${info.app.artifact:users-service}")
     private String artifact;
-    @Value("${info.app.version}")
+
+    @Value("${info.app.version:unknown}")
     private String version;
-    @Value("${info.app.build}")
+
+    @Value("${info.app.build:unknown}")
     private String build;
+
     @Value("${app.hosting:AWS}")
     private String hosting;
 
-    public String generateBadge(String label, String value) {
+    @GetMapping({"/", "/system"})
+    public String applicationInfo() {
+        return "{\"version\":\"" + artifact + "::" + version + "::" + build + "\"}";
+    }
+
+    @GetMapping(value = {"/version-badge", "/system/version-badge"}, produces = "image/svg+xml")
+    public byte[] generateBadge() {
+        return generateBadge(hosting.toUpperCase(Locale.ROOT), "v" + version)
+                .getBytes(StandardCharsets.UTF_8);
+    }
+
+    private String generateBadge(String label, String value) {
         int widthLabel = TEXT_MARGIN + CHARACTER_WIDTH * label.length();
         int widthValue = TEXT_MARGIN + CHARACTER_WIDTH * value.length();
         int textWidth = widthLabel + widthValue;
         int middleLabel = widthLabel / 2;
         int middleValue = widthLabel + widthValue / 2;
-        return String.format(BADGE_IMAGE_TEMPLATE, textWidth, textWidth, widthLabel, widthValue, widthLabel, textWidth,
-                middleLabel, label, middleLabel, label, middleValue, value, middleValue, value);
+        return String.format(BADGE_IMAGE_TEMPLATE, textWidth, textWidth, widthLabel, widthValue, widthLabel,
+                textWidth, middleLabel, label, middleLabel, label, middleValue, value, middleValue, value);
     }
-
-    @GetMapping
-    public String applicationInfo() {
-        String appInfo = "{\"version\":\"" + this.artifact + "::" + this.version + "::" + this.build + "\"} <br> <br>";
-        appInfo += "/version-badge <br><br>";
-        appInfo += "/actuator/info <br> /actuator/health <br><br>";
-        appInfo += "/swagger-ui.html  <br> /v3/api-docs <br>";
-        return appInfo;
-    }
-
-    @GetMapping(value = VERSION_BADGE, produces = {"image/svg+xml"})
-    public byte[] generateBadge() {
-        return this.generateBadge(hosting.toUpperCase(Locale.ROOT), "v" + version).getBytes();
-    }
-
 }
