@@ -47,9 +47,11 @@ public class UserService {
 
     @Transactional
     public UserResponse updateUser(Long id, UserUpdateRequest request) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "User not found: " + id));
+        User user = userRepository.findById(id).orElseGet(() -> {
+            User newUser = new User();
+            newUser.setId(id);
+            return newUser;
+        });
 
         user.setFirstName(request.firstName());
         user.setFamilyName(request.familyName());
@@ -59,6 +61,9 @@ public class UserService {
         user.setCity(request.city());
         user.setProvince(request.province());
         user.setPostalCode(request.postalCode());
+        if (request.active() != null) {
+            user.setActive(request.active());
+        }
 
         return UserResponse.from(userRepository.save(user));
     }

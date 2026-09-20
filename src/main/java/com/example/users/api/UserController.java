@@ -56,11 +56,10 @@ public class UserController {
     }
 
     @Operation(
-            summary = "Update a user",
-            description = "Replaces the editable data of the selected user.",
+            summary = "Create or update a user",
+            description = "Creates the user when the ID does not exist, or updates it when it does.",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "User updated"),
-                    @ApiResponse(responseCode = "404", description = "User not found")
+                    @ApiResponse(responseCode = "200", description = "User created or updated")
             }
     )
     @PutMapping("/{id}")

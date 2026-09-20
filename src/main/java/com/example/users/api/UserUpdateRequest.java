@@ -8,6 +8,7 @@ public record UserUpdateRequest(
         String address,
         String city,
         String province,
-        String postalCode
+        String postalCode,
+        Boolean active
 ) {
 }
