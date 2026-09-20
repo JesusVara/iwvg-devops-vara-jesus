@@ -1,6 +1,7 @@
 package com.example.users.api;
 
 import com.example.users.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
@@ -78,7 +79,8 @@ public class UserController {
             }
     )
     @PatchMapping
-    public List<UserResponse> updateUsersActive(@RequestBody List<UserActiveUpdateRequest> requests) {
+    public List<UserResponse> updateUsersActive(
+            @Valid @RequestBody List<@Valid UserActiveUpdateRequest> requests) {
         return userService.updateUsersActive(requests);
     }
 

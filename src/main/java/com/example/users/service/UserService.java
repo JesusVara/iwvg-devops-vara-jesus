@@ -74,11 +74,15 @@ public class UserService {
     @Transactional
     public List<UserResponse> updateUsersActive(List<UserActiveUpdateRequest> requests) {
         List<User> users = requests.stream()
-                .filter(UserActiveUpdateRequest::active)
+                .filter(request -> Boolean.TRUE.equals(request.active()))
                 .map(request -> userRepository.findById(request.id())
                         .orElseThrow(() -> new ResponseStatusException(
                                 HttpStatus.NOT_FOUND, "User not found: " + request.id())))
                 .toList();
+
+        if (users.isEmpty()) {
+            return List.of();
+        }
 
         users.forEach(user -> user.setActive(true));
 
