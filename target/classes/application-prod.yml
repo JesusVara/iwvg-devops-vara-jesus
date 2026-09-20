@@ -1,2 +1,51 @@
+app:
+  hosting: AWS
+spring:
+  application:
+    name: iwvg-devops-vara-jesus
+  docker:
+    compose:
+      enabled: true
+      file: docker-compose.yml
+  datasource:
+    url: jdbc:postgresql://postgres:5432/usersdb
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+  jpa:
+    defer-datasource-initialization: true
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        #dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+  jackson:
+    default-property-inclusion: non_null
+
+info:
+  app:
+    artifact: "users-service"
+    version: "0.0.1-SNAPSHOT"
+    build: "2026-09-20T07:29:34Z"
+
 server:
-  port: 10000
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  info:
+    env:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug

@@ -1,6 +1,7 @@
 package com.example.users.service;
 
 import com.example.users.api.UserResponse;
+import com.example.users.api.UserUpdateRequest;
 import com.example.users.domain.User;
 import com.example.users.repository.UserRepository;
 import com.example.users.repository.UserSpecifications;
@@ -42,5 +43,23 @@ public class UserService {
                         HttpStatus.NOT_FOUND, "User not found: " + id));
         user.setActive(true);
         userRepository.save(user);
+    }
+
+    @Transactional
+    public UserResponse updateUser(Long id, UserUpdateRequest request) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "User not found: " + id));
+
+        user.setFirstName(request.firstName());
+        user.setFamilyName(request.familyName());
+        user.setEmail(request.email());
+        user.setIdentity(request.identity());
+        user.setAddress(request.address());
+        user.setCity(request.city());
+        user.setProvince(request.province());
+        user.setPostalCode(request.postalCode());
+
+        return UserResponse.from(userRepository.save(user));
     }
 }

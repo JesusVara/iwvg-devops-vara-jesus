@@ -26,9 +26,9 @@ spring:
 
 info:
   app:
-    artifact: "@project.artifactId@"
-    version: "@project.version@"
-    build: "@maven.build.timestamp@"
+    artifact: "users-service"
+    version: "0.0.1-SNAPSHOT"
+    build: "2026-09-20T07:29:34Z"
 
 server:
   port: 8080

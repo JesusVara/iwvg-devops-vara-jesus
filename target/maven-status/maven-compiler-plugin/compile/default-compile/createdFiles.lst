@@ -12,6 +12,7 @@ es/upm/miw/devops/code/Point.class
 com/example/users/UsersServiceApplication.class
 com/example/users/api/UserController.class
 es/upm/miw/devops/code/User.class
+com/example/users/api/UserUpdateRequest.class
 com/example/users/api/UserResponse.class
 es/upm/miw/devops/code/Flow.class
 es/upm/miw/devops/code/DecimalCollection.class
