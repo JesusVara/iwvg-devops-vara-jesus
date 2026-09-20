@@ -12,7 +12,7 @@
 ### Estado del código
 [![DevOps](https://github.com/JesusVara/iwvg-devops-vara-jesus/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/JesusVara/iwvg-devops-vara-jesus/actions/workflows/continuous-integration.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=JesusVara_iwvg-devops-vara-jesus&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=JesusVara_iwvg-devops-vara-jesus)
-[![Render broken](https://iwvg-devops-latest.onrender.com/version-badge)](https://iwvg-devops-latest.onrender.com/swagger-ui.html)
+[![Render broken](http://51.49.31.85:8080/system/version-badge)](http://51.49.31.85:8080/system/version-badge)
 
 
 ### Tecnologías necesarias
