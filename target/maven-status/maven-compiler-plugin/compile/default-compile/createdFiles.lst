@@ -4,6 +4,7 @@ es/upm/miw/devops/rest/exceptionshandler/ErrorMessage.class
 es/upm/miw/devops/code/UserService.class
 es/upm/miw/devops/code/Fraction.class
 es/upm/miw/devops/code/DateSnippet.class
+com/example/users/domain/Role.class
 es/upm/miw/devops/Application.class
 es/upm/miw/devops/rest/exceptionshandler/ApiExceptionHandler.class
 com/example/users/api/SystemController.class

@@ -1,7 +1,10 @@
 package com.example.users.service;
 
 import com.example.users.api.UserResponse;
+import com.example.users.api.UserActiveUpdateRequest;
+import com.example.users.api.UserUpdateRequest;
 import com.example.users.domain.User;
+import com.example.users.domain.Role;
 import com.example.users.repository.UserRepository;
 import com.example.users.repository.UserSpecifications;
 import org.springframework.data.domain.Page;
@@ -11,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -42,5 +47,58 @@ public class UserService {
                         HttpStatus.NOT_FOUND, "User not found: " + id));
         user.setActive(true);
         userRepository.save(user);
+    }
+
+    @Transactional
+    public UserResponse updateUser(Long id, UserUpdateRequest request) {
+        User user = userRepository.findById(id).orElseGet(() -> {
+            User created = new User();
+            created.setId(id);
+            return created;
+        });
+        user.setFirstName(request.firstName());
+        user.setFamilyName(request.familyName());
+        user.setEmail(request.email());
+        user.setIdentity(request.identity());
+        user.setAddress(request.address());
+        user.setCity(request.city());
+        user.setProvince(request.province());
+        user.setPostalCode(request.postalCode());
+        if (request.role() != null) {
+            user.setRole(request.role());
+        }
+        if (request.active() != null) {
+            user.setActive(request.active());
+        }
+        return UserResponse.from(userRepository.save(user));
+    }
+
+    @Transactional
+    public List<UserResponse> updateUsersActive(List<UserActiveUpdateRequest> requests) {
+        List<User> users = requests.stream()
+                .map(request -> userRepository.findById(request.id())
+                        .orElseThrow(() -> new ResponseStatusException(
+                                HttpStatus.NOT_FOUND, "User not found: " + request.id())))
+                .filter(user -> {
+                    UserActiveUpdateRequest request = requests.stream()
+                            .filter(candidate -> candidate.id().equals(user.getId()))
+                            .findFirst()
+                            .orElseThrow();
+                    return request.active() || user.getRole() != Role.ADMIN;
+                })
+                .toList();
+
+        if (users.isEmpty()) {
+            return List.of();
+        }
+
+        for (User user : users) {
+            UserActiveUpdateRequest request = requests.stream()
+                    .filter(candidate -> candidate.id().equals(user.getId()))
+                    .findFirst()
+                    .orElseThrow();
+            user.setActive(request.active());
+        }
+        return userRepository.saveAll(users).stream().map(UserResponse::from).toList();
     }
 }

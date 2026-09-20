@@ -26,6 +26,7 @@
             ${project.build.directory}/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
         <sonar.exclusions>src/main/java/es/upm/miw/devops/**</sonar.exclusions>
+        <sonar.coverage.exclusions>src/main/java/es/upm/miw/devops/**/*.java</sonar.coverage.exclusions>
     </properties>
 
     <dependencies>

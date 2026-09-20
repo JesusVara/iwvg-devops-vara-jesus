@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [develop,release-*]
+    branches: [master,develop,release-*]
 
 jobs:
   devops:
@@ -62,6 +62,7 @@ jobs:
         run: >
           mvn -B sonar:sonar
           -Dsonar.projectKey=JesusVara_iwvg-devops-vara-jesus
+          -Dsonar.projectName=jesusvara_iwvg-devops-vara-jesus
           -Dsonar.organization=${{ env.ORGANIZATION }}
           -Dsonar.host.url=https://sonarcloud.io 
           -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml

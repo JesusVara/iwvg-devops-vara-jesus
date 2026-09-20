@@ -1,6 +1,7 @@
 package com.example.users.api;
 
 import com.example.users.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
@@ -9,12 +10,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping({"/user"}) //Just /user url
@@ -50,6 +54,17 @@ public class UserController {
     public ResponseEntity<Void> activateUser(@PathVariable Long id) {
         userService.activateUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public UserResponse updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateRequest request) {
+        return userService.updateUser(id, request);
+    }
+
+    @PatchMapping
+    public List<UserResponse> updateUsersActive(
+            @Valid @RequestBody List<@Valid UserActiveUpdateRequest> requests) {
+        return userService.updateUsersActive(requests);
     }
 
     private Pageable sanitizePageable(Pageable pageable) {

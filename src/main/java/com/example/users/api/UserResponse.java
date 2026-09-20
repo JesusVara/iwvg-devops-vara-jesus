@@ -1,6 +1,7 @@
 package com.example.users.api;
 
 import com.example.users.domain.User;
+import com.example.users.domain.Role;
 
 public record UserResponse(
         Long id,
@@ -12,6 +13,7 @@ public record UserResponse(
         String city,
         String province,
         String postalCode,
+        Role role,
         boolean billable,
         boolean active
 ) {
@@ -26,6 +28,7 @@ public record UserResponse(
                 user.getCity(),
                 user.getProvince(),
                 user.getPostalCode(),
+                user.getRole(),
                 user.isBillable(),
                 user.isActive()
         );

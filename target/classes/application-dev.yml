@@ -30,7 +30,7 @@ info:
   app:
     artifact: "users-service"
     version: "0.0.1-SNAPSHOT"
-    build: "2026-09-19T11:41:15Z"
+    build: "2026-09-20T08:49:12Z"
 
 server:
   port: 8080
