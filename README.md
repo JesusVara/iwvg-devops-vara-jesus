@@ -124,4 +124,3 @@ Ejemplo resuelto:
 ![](./docs/miw-iwvg-devops-demo.png)
 
 
-
