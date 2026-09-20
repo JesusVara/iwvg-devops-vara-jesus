@@ -1,7 +1,8 @@
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/UsersServiceApplication.java
-/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/api/SystemController.java
+/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/api/UserActiveUpdateRequest.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/api/UserController.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/api/UserResponse.java
+/Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/api/UserUpdateRequest.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/config/SecurityConfig.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/domain/User.java
 /Users/jesusvara/IdeaProjects/iwvg-devops-vara-jesus-Feature-2/src/main/java/com/example/users/repository/UserRepository.java
